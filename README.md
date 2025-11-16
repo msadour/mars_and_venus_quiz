@@ -1,72 +1,101 @@
-Quiz to measure feminine and masculine energy balance ♀️♂️
+# ⚡ Mars & Venus Quiz 🌙
 
-Instruction
-It will be a test with 25 (mixed up) questions, 
-Each question can be answered on a scale of 1 to 5:
-1️⃣ Strongly Disagree
-2️⃣ Disagree
-3️⃣ Neutral
-4️⃣ Agree
-5️⃣ Strongly Agree
+A beautiful React webapp to measure your feminine and masculine energy balance.
 
-Content
-⚡ Masculine Energy (Electric / Conscious Mind / Static Energy)
-- I like to take charge and make decisions quickly.
-- I feel most at ease when my life is structured and organized.
-- I prefer logic and reason over emotions when facing challenges.
-- I set clear goals and work persistently to achieve them.
-- I feel a strong need to protect and provide for the people I care about.
-- Independence is very important to me.
-- I find satisfaction in accomplishments and measurable results.
-- I naturally take action when something needs to get done.
-- I tend to stay grounded and stable even in stressful situations.
-- I rely on intellect and analysis more than intuition.
-- I have a good sense of direction.
-- it is easy for me to say no
-- I like being the leader
-- I like feeling powerful when I lift something heavy.
-- When something bad happens, I prefer to find a solution rather than seek consolation.
-🌙 Feminine Energy (Magnetic / Subconscious Mind / Dynamic Energy)
-- I easily sense and understand the emotions of others.
-- I often rely on intuition or gut feelings to make decisions.
-- I find deep joy in nurturing or caring for others.
-- I value emotional connection more than achievement or success.
-- I am comfortable being open, vulnerable, and expressive.
-- I adapt easily and can go with the flow when plans change.
-- Creativity, playfulness, or beauty are important parts of my life.
--  feel guided by empathy and compassion in most interactions.
-- I prefer collaboration and harmony over competition.
-- I feel deeply connected to my inner world, emotions, and spirituality.
-- I remember easily the face of people
-- I like to dance
-- I like to talk about other people
-- When someone plays the villain in a movie or play, you sometimes end up really hating them
-- About a product, I care more about its reputation rather its technical characteristic
-🧮 Scoring
-Masculine % = M / (M + F) * 100
-Feminine % = F / (M + F) * 100
-Where:
-M = total score of masculine questions
-F = total score of feminine questions
-These two will always add up to 100%.
+## 🌟 Features
 
-🌗 Interpretation
+- **30 Carefully Crafted Questions**: 15 masculine energy questions and 15 feminine energy questions
+- **Interactive Quiz Experience**: Beautiful gradient backgrounds and smooth animations
+- **Detailed Results**: Get your percentage breakdown and personalized interpretation
+- **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
+- **Modern UI**: Glass morphism effects and elegant typography
 
-70%+ Masculine:
-You express strong masculine traits — logic, action, structure, protection. You might benefit from developing more emotional awareness and receptivity.
+## 🧮 How It Works
 
+The quiz analyzes your responses on a 1-5 scale:
+- 1️⃣ Strongly Disagree
+- 2️⃣ Disagree
+- 3️⃣ Neutral
+- 4️⃣ Agree
+- 5️⃣ Strongly Agree
 
-50–70% Masculine:
-You’re action-oriented yet fairly balanced; you value both achievement and relationships.
+**Scoring Formula:**
+- Masculine % = M / (M + F) × 100
+- Feminine % = F / (M + F) × 100
 
+Where M = total masculine score and F = total feminine score.
 
-Balanced (45–55%):
-You embody harmony between doing and being, logic and intuition, intellect and emotion.
+## 🎯 Energy Types
 
+### ⚡ Masculine Energy (Electric/Conscious Mind/Static Energy)
+- Logic and structure-oriented
+- Action and goal-focused
+- Independence and leadership
+- Protection and providing
 
-50–70% Feminine:
-You lead with intuition, empathy, and creativity while maintaining some structure and grounding.
+### 🌙 Feminine Energy (Magnetic/Subconscious Mind/Dynamic Energy)
+- Intuition and emotion-oriented
+- Flow and adaptability
+- Nurturing and collaboration
+- Creativity and spirituality
 
+## Expanding the ESLint configuration
 
-70%+ Feminine:
-You are deeply intuitive, nurturing, and emotionally open — cultivating more focus and structure could support your flow.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
